@@ -8,8 +8,8 @@ const Contact = () => {
       </h1>
 
       <div className="flex justify-between">
-        <div className="flex justify-center gap-2">
-          <button className="">Get to know us</button>
+        <div className="flex justify-center gap-2 hover:font-semibold">
+          <button>Get to know us</button>
           <button>
             <img src="./src/assets/arrow.svg" className="h-8" alt="Arrow" />
           </button>

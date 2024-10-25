@@ -11,7 +11,7 @@ const Navigation = () => {
             Menu
           </button>
         </div>
-        <h2 className="text-xl">35989050####</h2>
+        <h2 className="text-xl">+359 89050####</h2>
       </div>
     </>
   );
