@@ -2,7 +2,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className="bg-gray-100 p-8 rounded-lg text-left">
+    <div className="bg-gray-100 p-8 rounded-lg text-left h-full">
       <h1 className="text-4xl font-bold">
         A modern day appoach to dentist appointments
       </h1>
