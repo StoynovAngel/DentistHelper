@@ -1,9 +1,9 @@
 import React from "react";
 import AboutContact from "../aboutComponents/AboutContact";
-import message from "../assets/message.svg";
-import phone from "../assets/phone.svg";
-import office from "../assets/office.svg";
-import appointment from "../assets/appointment.svg";
+import message from "/message.svg";
+import phone from "/phone.svg";
+import office from "/office.svg";
+import appointment from "/appointment.svg";
 
 const About = () => {
   return (
@@ -15,7 +15,7 @@ const About = () => {
           <h3 className="text-2xl text-gray-700">We can help you out</h3>
         </div>
         <div className="flex justify-center aling-middle">
-          <img src="./src/assets/map.svg" className="h-fit	 w-4/6" alt="Map" />
+          <img src="/map.svg" className="h-fit	 w-4/6" alt="Map" />
         </div>
         <div className="grid grid-cols-4 gap-5 m-5 w-1/2 mx-auto">
           <AboutContact
@@ -54,7 +54,7 @@ const About = () => {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="w-full h-96 border-t-4"
+            className="w-full h-96 border-t-2"
           ></iframe>
         </div>
       </div>

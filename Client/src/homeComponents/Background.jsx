@@ -6,22 +6,22 @@ const Background = () => {
     <>
       <div className="relative ">
         <img
-          src="./src/assets/background.jpg"
+          src="/background.jpg"
           className="h-screen w-full object-cover rounded-lg"
           alt="Background"
         />
         <div className="absolute bottom-10  w-full">
-          <div className="flex justify-evenly ">
-            <Cart
-              title={"Single Dental Implants"}
-              description={
-                "Single Dental Implants are a permanent solution for replacing missing teeth."
-              }
-            />
+          <div className="flex flex-col justify-center sm:justify-evenly sm:flex-row ">
             <Cart
               title={"Zirconia Fixed Bridge"}
+              transparency={"bg-opacity-80"}
+              description={"Zirconia Fixed Bridge is a durable. "}
+            />
+            <Cart
+              title={"Single Dental Implants"}
+              transparency={"bg-opacity-100"}
               description={
-                "Zirconia Fixed Bridge is a durable, aesthetically pleasing dental restoration used to replace multiple missing teeth. "
+                "Single Dental Implants are a permanent solution for replacing missing teeth."
               }
             />
           </div>

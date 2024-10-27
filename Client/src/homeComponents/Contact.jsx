@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
@@ -9,14 +10,18 @@ const Contact = () => {
 
       <div className="flex justify-between">
         <div className="flex justify-center gap-2 hover:font-semibold">
-          <button>Get to know us</button>
-          <button>
-            <img src="./src/assets/arrow.svg" className="h-8" alt="Arrow" />
-          </button>
+          <Link to="/about" className="flex">
+            <button>Get to know us</button>
+            <button>
+              <img src="/arrow.svg" className="h-8" alt="Arrow" />
+            </button>
+          </Link>
         </div>
-        <button className="transition ease-in-out delay-150 bg-black text-white hover:bg-main px-6 py-4 rounded-full font-medium ">
-          Get started
-        </button>
+        <Link to="/appointment">
+          <button className="transition ease-in-out delay-150 bg-black text-white hover:bg-main px-6 py-4 rounded-full font-medium ">
+            Get started
+          </button>
+        </Link>
       </div>
     </div>
   );
