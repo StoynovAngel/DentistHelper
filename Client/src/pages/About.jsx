@@ -15,23 +15,21 @@ const About = () => {
           <h3 className="text-2xl text-gray-700">We can help you out</h3>
         </div>
         <div className="flex justify-center aling-middle">
-          <img src="/map.svg" className="h-fit	 w-4/6" alt="Map" />
+          <img src="/map.svg" className="h-fit lg:w-4/6" alt="Map" />
         </div>
-        <div className="grid grid-cols-4 gap-5 m-5 w-1/2 mx-auto">
+        <div className="grid justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 m-5 w-1/2 mx-auto">
           <AboutContact
             path={phone}
             header={"Call us:"}
-            description={
-              "Feel free to call us. We receive calls from 8:00-18:00."
-            }
+            description={"We receive calls from 8:00-18:00."}
             text={"+359 890 ####"}
           />
           <AboutContact
             path={message}
             header={"Chat to support:"}
             description={"Write us an email"}
-            text={"dentistbro@gmail.com"}
-            link={"mailto:dentistbro@gmail.com"}
+            text={"Click here"}
+            link={"mailto:dentist@gmail.com"}
           />
           <AboutContact
             path={office}
@@ -43,7 +41,7 @@ const About = () => {
           <AboutContact
             path={appointment}
             header={"Make an appointment:"}
-            description={"Want to feel good and smile good?"}
+            description={"Want to smile more?"}
             text={"Click here"}
             link={"/appointment"}
           />
