@@ -17,7 +17,7 @@ const About = () => {
         <div className="flex justify-center aling-middle">
           <img src="/map.svg" className="h-fit lg:w-4/6" alt="Map" />
         </div>
-        <div className="grid justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 m-5 w-1/2 mx-auto">
+        <div className="grid justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 m-5 w-fit mx-auto">
           <AboutContact
             path={phone}
             header={"Call us:"}
