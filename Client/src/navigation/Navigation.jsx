@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import RoundedButton from "../homeComponents/RoundedButton";
+import RoundedButton from "../pages/homeComponents/RoundedButton";
 import Home from "../pages/Home";
 
 const Navigation = () => {
@@ -22,6 +22,11 @@ const Navigation = () => {
           </button>
           {show && (
             <div className="flex gap-2 sm:gap-4 text-sm sm:text-lg font-semibold align-middle transition ease-in-out delay-75">
+              <Link to="/register">
+                <h1 className="hover:border-b-4 border-transparent border-b-4  hover:border-main  cursor-pointer">
+                  Register
+                </h1>
+              </Link>
               {location.pathname !== "/" && (
                 <Link to="/">
                   <h1 className="hover:border-b-4 border-transparent border-b-4  hover:border-main  cursor-pointer">

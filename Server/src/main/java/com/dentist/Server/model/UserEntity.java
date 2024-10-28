@@ -37,6 +37,6 @@ public class UserEntity {
     private int age;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", columnDefinition = "VARCHAR(20) DEFAULT 'PATIENT'")
+    @Column(name = "role", length = 20)
     private UserType role;
 }
