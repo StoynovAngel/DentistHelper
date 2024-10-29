@@ -15,17 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<ResponseWrapper<UserEntity>> addUser(@RequestBody UserEntity user){
+    public ResponseEntity<ResponseWrapper<UserEntity>> addUser(@RequestBody UserEntity user) {
         ResponseWrapper<UserEntity> response = userService.addUser(user);
-        return ResponseEntityUtil.from(response);
-
-    }
-    @PostMapping("/login")
-    public ResponseEntity<ResponseWrapper<UserEntity>> login(@RequestBody UserEntity user) {
-        ResponseWrapper<UserEntity> response = userService.login(user);
         return ResponseEntityUtil.from(response);
     }
 }
