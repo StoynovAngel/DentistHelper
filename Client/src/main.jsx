@@ -5,12 +5,15 @@ import "./index.css";
 import Navigation from "./navigation/Navigation.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
+import AuthProvider from "./auth/AuthProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <Navigation />
-      <App />
+      <AuthProvider>
+        <Navigation />
+        <App />
+      </AuthProvider>
       <Analytics />
     </BrowserRouter>
   </StrictMode>

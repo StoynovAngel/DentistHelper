@@ -15,10 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -29,16 +26,16 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<ResponseWrapper<UserResponseDTO>> register(@Valid @RequestBody UserRegistrationDTO userDTO) {
-        ResponseWrapper<UserResponseDTO> response = authService.register(userDTO);
+    public ResponseEntity<ResponseWrapper<UserResponseDTO>> register(@Valid @RequestBody UserRegistrationDTO userDTO, @RequestParam(value = "captchaToken", required = false) String captchaToken) {
+        ResponseWrapper<UserResponseDTO> response = authService.register(userDTO, captchaToken);
         HttpStatus status = response.getStatus().equals("success") ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(response, status);
     }
 
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseWrapper<Map<String, Object>>> login(@RequestBody UserEntity loginUser) {
-        ResponseWrapper<Map<String, Object>> response = authService.login(loginUser);
+    public ResponseEntity<ResponseWrapper<Map<String, Object>>> login(@RequestBody UserEntity loginUser, @RequestParam(value = "captchaToken", required = false) String captchaToken) {
+        ResponseWrapper<Map<String, Object>> response = authService.login(loginUser, captchaToken);
         HttpStatus status = response.getStatus().equals("success") ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
         return new ResponseEntity<>(response, status);
     }

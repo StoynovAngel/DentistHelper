@@ -2,7 +2,7 @@ import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from "react-router-dom";
 import InputComponent from "./InputComponent";
-import useRegister from "../../hooks/useRegister";
+import { useAuth } from "../AuthProvider";
 
 const RegisterForm = () => {
   const {
@@ -11,19 +11,14 @@ const RegisterForm = () => {
     success,
     CAPTCHA_SITE_KEY,
     handleInputChange,
-    handleSubmit,
+    registerAction,
     onCaptchaChange,
-  } = useRegister();
+  } = useAuth();
 
   return (
-    <form id="demo-form" onSubmit={handleSubmit}>
-      <h1 className="text-5xl text-center">Create an account</h1>
-      <h2 className="mt-2 mb-12">
-        Already have an account?{" "}
-        <Link to="/login" className="underline text-main">
-          Login
-        </Link>
-      </h2>
+    <form id="demo-form" onSubmit={registerAction}>
+      <h1 className="text-5xl text-center mb-12">Create an account</h1>
+
       <div className="grid grid-cols-2 gap-4">
         <InputComponent
           type="text"
@@ -40,6 +35,7 @@ const RegisterForm = () => {
           onChange={handleInputChange}
         />
       </div>
+
       <InputComponent
         type="text"
         id="username"
@@ -47,6 +43,7 @@ const RegisterForm = () => {
         value={formData.username}
         onChange={handleInputChange}
       />
+
       <InputComponent
         type="email"
         id="email"
@@ -54,6 +51,7 @@ const RegisterForm = () => {
         value={formData.email}
         onChange={handleInputChange}
       />
+
       <InputComponent
         type="password"
         id="password"
@@ -61,6 +59,7 @@ const RegisterForm = () => {
         value={formData.password}
         onChange={handleInputChange}
       />
+
       <InputComponent
         type="text"
         id="age"
@@ -69,7 +68,10 @@ const RegisterForm = () => {
         onChange={handleInputChange}
       />
 
-      <ReCAPTCHA sitekey={CAPTCHA_SITE_KEY} onChange={onCaptchaChange} />
+      <ReCAPTCHA
+        sitekey={CAPTCHA_SITE_KEY}
+        onChange={(token) => onCaptchaChange(token)}
+      />
 
       <button
         type="submit"
@@ -77,6 +79,13 @@ const RegisterForm = () => {
       >
         Create account
       </button>
+
+      <h2 className="mt-2">
+        Already have an account?{" "}
+        <Link to="/login" className="underline text-main">
+          Login
+        </Link>
+      </h2>
 
       {error && <p className="text-red-500 mt-4">{error}</p>}
       {success && (

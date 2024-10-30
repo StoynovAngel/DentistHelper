@@ -5,11 +5,11 @@ import RegisterForm from "./authComponents/RegisterForm";
 
 const Register = () => {
   return (
-    <div className="bg-gray-100 space-y-24 grid grid-cols-2 gap-4 h-screen">
-      <div className="my-5 ml-5">
+    <div className="flex justify-between bg-gray-100 gap-4 m-5 p-5 rounded-lg">
+      <div className="flex items-center justify-center  max-w-2xl h-auto">
         <AuthBackground />
       </div>
-      <div className="flex flex-col mt-5 font-mono items-center">
+      <div className="flex flex-col items-center justify-center w-full font-mono">
         <RegisterForm />
       </div>
     </div>

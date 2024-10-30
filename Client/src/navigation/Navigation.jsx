@@ -27,6 +27,11 @@ const Navigation = () => {
                   Register
                 </h1>
               </Link>
+              <Link to="/login">
+                <h1 className="hover:border-b-4 border-transparent border-b-4  hover:border-main  cursor-pointer">
+                  Login
+                </h1>
+              </Link>
               {location.pathname !== "/" && (
                 <Link to="/">
                   <h1 className="hover:border-b-4 border-transparent border-b-4  hover:border-main  cursor-pointer">

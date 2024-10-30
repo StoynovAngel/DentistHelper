@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const useRegister = () => {
+const UseRegister = () => {
   const CAPTCHA_SITE_KEY = import.meta.env.VITE_CAPTCHA_SITE_KEY;
+  const navigate = useNavigate();
   const [captchaToken, setCaptchaToken] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
@@ -30,7 +32,7 @@ const useRegister = () => {
     e.preventDefault();
 
     if (!captchaToken) {
-      alert("Please complete the reCAPTCHA.");
+      console.log("Please complete the reCAPTCHA.");
       return;
     }
 
@@ -43,7 +45,8 @@ const useRegister = () => {
       if (response.data.status === "success") {
         setSuccess(true);
         setError(null);
-        alert("Registration successful!");
+        console.log("Registration successful!");
+        navigate("/login");
       } else {
         setError("Registration failed. Please try again.");
       }
@@ -63,4 +66,4 @@ const useRegister = () => {
   };
 };
 
-export default useRegister;
+export default UseRegister;

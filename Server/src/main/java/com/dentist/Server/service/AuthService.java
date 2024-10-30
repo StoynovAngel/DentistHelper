@@ -25,10 +25,16 @@ import java.util.Optional;
 public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
     private final PasswordEncoder encoder;
+    private final RecaptchaService recaptchaService;
 
-    public ResponseWrapper<UserResponseDTO> register(UserRegistrationDTO userDTO) {
+    public ResponseWrapper<UserResponseDTO> register(UserRegistrationDTO userDTO, String captchaToken) {
+        boolean isCaptchaValid = recaptchaService.verifyCaptcha(captchaToken);
+        if (!isCaptchaValid) {
+            return ResponseWrapperUtil.createErrorResponse("Invalid reCAPTCHA.");
+        }
+
         UserEntity user = new UserEntity();
 
         user.setUsername(userDTO.getUsername());
@@ -50,7 +56,12 @@ public class AuthService {
         }
     }
 
-    public ResponseWrapper<Map<String, Object>> login(UserEntity loginUser) {
+    public ResponseWrapper<Map<String, Object>> login(UserEntity loginUser, String captchaToken) {
+        boolean isCaptchaValid = recaptchaService.verifyCaptcha(captchaToken);
+        if (!isCaptchaValid) {
+            return ResponseWrapperUtil.createErrorResponse("Invalid reCAPTCHA.");
+        }
+
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword())
