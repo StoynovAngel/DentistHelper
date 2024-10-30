@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from "react-router-dom";
 import InputComponent from "./InputComponent";
 import { useAuth } from "../AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { registerAction } from "../../action/RegisterAction";
 
 const RegisterForm = () => {
-  const {
-    formData,
-    error,
-    success,
-    CAPTCHA_SITE_KEY,
-    handleInputChange,
-    registerAction,
-    onCaptchaChange,
-  } = useAuth();
+  const { error, success, CAPTCHA_SITE_KEY, setError, setSuccess } = useAuth();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    email: "",
+    firstname: "",
+    lastname: "",
+    age: 1,
+  });
+  const [captchaToken, setCaptchaToken] = useState(null);
 
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const onCaptchaChange = (token) => {
+    setCaptchaToken(token);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await registerAction({
+      formData,
+      captchaToken,
+      setError,
+      setSuccess,
+      navigate,
+    });
+  };
   return (
-    <form id="demo-form" onSubmit={registerAction}>
+    <form id="demo-form" onSubmit={handleSubmit} className="w-full max-w-md">
       <h1 className="text-5xl text-center mb-12">Create an account</h1>
 
       <div className="grid grid-cols-2 gap-4">
@@ -70,7 +96,8 @@ const RegisterForm = () => {
 
       <ReCAPTCHA
         sitekey={CAPTCHA_SITE_KEY}
-        onChange={(token) => onCaptchaChange(token)}
+        onChange={onCaptchaChange}
+        className="mb-4"
       />
 
       <button

@@ -5,16 +5,11 @@ import com.dentist.Server.dto.UserResponseDTO;
 import com.dentist.Server.exceptions.ResponseWrapper;
 import com.dentist.Server.model.UserEntity;
 import com.dentist.Server.service.AuthService;
-import com.dentist.Server.service.JwtService;
-import com.dentist.Server.service.UserService;
-import com.dentist.Server.util.ResponseEntityUtil;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;

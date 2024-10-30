@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; // Corrected import
 import { url } from "../common/constant";
 
 const AuthContext = createContext();
@@ -10,22 +10,12 @@ const AuthProvider = ({ children }) => {
   const CAPTCHA_SITE_KEY = import.meta.env.VITE_CAPTCHA_SITE_KEY;
   const navigate = useNavigate();
 
-  const [captchaToken, setCaptchaToken] = useState(null);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    email: "",
-    firstname: "",
-    lastname: "",
-    age: 1,
-  });
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
-
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
@@ -51,9 +41,7 @@ const AuthProvider = ({ children }) => {
             axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
           }
         } else if (event.newValue === "logout") {
-          sessionStorage.removeItem("token");
-          setUser(null);
-          delete axios.defaults.headers.common["Authorization"];
+          logOut();
         }
       }
     };
@@ -65,89 +53,12 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
-
-  const onCaptchaChange = (token) => {
-    setCaptchaToken(token);
-  };
-
-  const loginAction = async (e) => {
-    e.preventDefault();
-
-    if (!captchaToken) {
-      setError("Please complete the reCAPTCHA.");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        `${url}auth/login?captchaToken=${captchaToken}`,
-        {
-          username: formData.username,
-          password: formData.password,
-          captchaToken,
-        }
-      );
-
-      if (response.data && response.data.status === "success") {
-        const token = response.data.data.token;
-        if (typeof token === "string" && token.trim().length > 0) {
-          sessionStorage.setItem("token", token);
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-          setUser(jwtDecode(token));
-          setSuccess(true);
-          setError(null);
-
-          localStorage.setItem("auth-event", "login");
-          localStorage.removeItem("auth-event");
-          navigate("/");
-        } else {
-          console.error("Invalid token format:", token);
-          setError("Login failed: Invalid token format.");
-        }
-      } else {
-        setError("Login failed. Please try again.");
-      }
-    } catch (err) {
-      console.error("Error during login:", err);
-      setError(err.response?.data?.message || "An error occurred.");
-    }
-  };
-
-  const registerAction = async (e) => {
-    e.preventDefault();
-
-    if (!captchaToken) {
-      setError("Please complete the reCAPTCHA.");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        `http://localhost:8080/auth/register?captchaToken=${captchaToken}`,
-        {
-          ...formData,
-          captchaToken,
-        }
-      );
-
-      if (response.data.status === "success") {
-        setSuccess(true);
-        setError(null);
-        navigate("/login");
-      } else {
-        setError("Registration failed. Please try again.");
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || "An error occurred.");
-    }
+  const logIn = (token) => {
+    sessionStorage.setItem("token", token);
+    localStorage.setItem("auth-event", "login");
+    setUser(jwtDecode(token));
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    localStorage.removeItem("auth-event");
   };
 
   const logOut = () => {
@@ -156,7 +67,6 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.setItem("auth-event", "logout");
     localStorage.removeItem("auth-event");
-
     navigate("/login");
   };
 
@@ -165,15 +75,13 @@ const AuthProvider = ({ children }) => {
       value={{
         CAPTCHA_SITE_KEY,
         user,
-        captchaToken,
-        success,
         error,
-        formData,
-        loginAction,
-        registerAction,
+        setError,
+        success,
+        setSuccess,
+        setUser,
+        logIn,
         logOut,
-        handleInputChange,
-        onCaptchaChange,
       }}
     >
       {children}
