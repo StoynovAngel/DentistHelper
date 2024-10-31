@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import RoundedButton from "../../pages/homeComponents/RoundedButton";
+import RoundedButton from "../../homeComponents/RoundedButton";
 import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
 import image1 from "/authBackground.jpg";

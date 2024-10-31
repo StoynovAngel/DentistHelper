@@ -39,7 +39,7 @@ public class UserEntity implements UserDetails {
     private String lastname;
 
     @Email
-    @Column(name="email", length = 50, nullable = false)
+    @Column(name="email", length = 50, nullable = false, unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)

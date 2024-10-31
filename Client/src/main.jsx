@@ -5,16 +5,16 @@ import "./index.css";
 import Navigation from "./navigation/Navigation.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
-import AuthProvider from "./auth/AuthProvider.jsx";
+import AuthProviderWrapper from "./wrapper/AuthWrapper.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
+      <AuthProviderWrapper>
         <Navigation />
         <App />
-      </AuthProvider>
-      <Analytics />
+        <Analytics />
+      </AuthProviderWrapper>
     </BrowserRouter>
   </StrictMode>
 );

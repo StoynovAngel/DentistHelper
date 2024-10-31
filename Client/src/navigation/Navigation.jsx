@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import RoundedButton from "../pages/homeComponents/RoundedButton";
-import Home from "../pages/Home";
-import { useAuth } from "../auth/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const Navigation = () => {
   const [show, setShow] = useState(false);
   const location = useLocation();
-  const { user, logOut } = useAuth();
+  const { isLoggedIn, logOut } = useAuth();
 
   const handleToggle = () => {
     setShow((prev) => !prev);
   };
+
+  const isActiveLink = (path) => location.pathname === path;
+
   return (
     <>
       <div className="flex justify-between  mx-5 py-5 items-center overflow-x-auto">
         <div className="flex justify-center gap-5 items-center">
-          {!user && (
+          {!isLoggedIn && (
             <Link to="/login">
               <h1 className="border-black hover:border-main border-4 rounded-full p-2 cursor-pointer">
                 <img src="./login.svg" className="h-6" />
@@ -34,25 +35,47 @@ const Navigation = () => {
             <div className="flex gap-2 sm:gap-4 text-sm sm:text-lg font-semibold align-middle transition ease-in-out delay-75">
               {location.pathname !== "/" && (
                 <Link to="/">
-                  <h1 className="hover:border-b-4 border-transparent border-b-4  hover:border-main  cursor-pointer">
+                  <h1
+                    className={`border-b-4 ${
+                      isActiveLink("/") ? "border-main" : "border-transparent"
+                    } hover:border-main cursor-pointer`}
+                  >
                     Home
                   </h1>
                 </Link>
               )}
               <Link to="/about">
-                <h1 className="border-transparent border-b-4  hover:border-b-4 hover:border-main  cursor-pointer">
+                <h1
+                  className={`border-b-4 ${
+                    isActiveLink("/about")
+                      ? "border-main"
+                      : "border-transparent"
+                  } hover:border-main cursor-pointer`}
+                >
                   About
                 </h1>
               </Link>
               <Link to="/appointment">
-                <h1 className="hover:border-b-4 border-transparent border-b-4  hover:border-main  cursor-pointer">
+                <h1
+                  className={`border-b-4 ${
+                    isActiveLink("/appointment")
+                      ? "border-main"
+                      : "border-transparent"
+                  } hover:border-main cursor-pointer`}
+                >
                   Appointment
                 </h1>
               </Link>
-              {user && (
+              {isLoggedIn && (
                 <>
                   <Link to="/profile">
-                    <h1 className="hover:border-b-4 border-transparent border-b-4 hover:border-main cursor-pointer">
+                    <h1
+                      className={`border-b-4 ${
+                        isActiveLink("/profile")
+                          ? "border-main"
+                          : "border-transparent"
+                      } hover:border-main cursor-pointer`}
+                    >
                       Profile
                     </h1>
                   </Link>

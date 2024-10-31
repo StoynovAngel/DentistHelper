@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useAuth } from "../AuthProvider";
+import useAuth from "../../hooks/useAuth";
 import { loginAction } from "../../action/LoginAction";
-import { useNavigate } from "react-router-dom";
-const Login = () => {
-  const { CAPTCHA_SITE_KEY, error, setError, setSuccess, setUser, logIn } =
-    useAuth();
+import { Link, useNavigate } from "react-router-dom";
+import { CAPTCHA_SITE_KEY } from "../../utils/authUtils";
+const LoginForm = () => {
+  const { error, setError, setSuccess, setUser, logIn } = useAuth();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -73,14 +73,21 @@ const Login = () => {
 
       <button
         type="submit"
-        className="bg-blue-500 text-white rounded w-full p-4 mt-4"
+        className="bg-gray-200 text-gray-900 text-md rounded-lg w-full p-4 hover:bg-main hover:text-white transition delay-100 mt-4"
       >
         Login
       </button>
+
+      <h2 className="mt-2">
+        Don't have an account?{" "}
+        <Link to="/register" className="underline text-main">
+          Sign in
+        </Link>
+      </h2>
 
       {error && <p className="text-red-500 mt-4">{error}</p>}
     </form>
   );
 };
 
-export default Login;
+export default LoginForm;

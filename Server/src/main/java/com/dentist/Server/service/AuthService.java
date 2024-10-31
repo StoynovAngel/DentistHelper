@@ -35,6 +35,7 @@ public class AuthService {
             return ResponseWrapperUtil.createErrorResponse("Invalid reCAPTCHA.");
         }
 
+
         UserEntity user = new UserEntity();
 
         user.setUsername(userDTO.getUsername());
@@ -44,6 +45,14 @@ public class AuthService {
         user.setPassword(encoder.encode(userDTO.getPassword()));
         user.setAge(userDTO.getAge());
         user.setRole(UserType.PATIENT);
+
+        if(userRepo.existsByEmail(user.getEmail())) {
+            return ResponseWrapperUtil.createErrorResponse("Email is taken.");
+        }
+
+        if(userRepo.existsByUsername(user.getUsername())){
+            return ResponseWrapperUtil.createErrorResponse("Username is taken.");
+        }
 
         try {
             userRepo.save(user);
@@ -75,7 +84,7 @@ public class AuthService {
             return ResponseWrapperUtil.createSuccessResponse(responseData, "Successfully logged in.");
 
         } catch (AuthenticationException e) {
-            return ResponseWrapperUtil.createErrorResponse("User not found or invalid password.");
+            return ResponseWrapperUtil.createErrorResponse("Incorrect username or password");
         }
     }
 

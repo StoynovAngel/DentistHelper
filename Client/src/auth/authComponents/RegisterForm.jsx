@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from "react-router-dom";
 import InputComponent from "./InputComponent";
-import { useAuth } from "../AuthProvider";
+import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { registerAction } from "../../action/RegisterAction";
+import { CAPTCHA_SITE_KEY } from "../../utils/authUtils";
 
 const RegisterForm = () => {
-  const { error, success, CAPTCHA_SITE_KEY, setError, setSuccess } = useAuth();
+  const { error, success, setError, setSuccess } = useAuth();
+  const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -49,14 +51,14 @@ const RegisterForm = () => {
         <InputComponent
           type="text"
           id="firstname"
-          placeholder="Firstname"
+          placeholder="Firstname:"
           value={formData.firstname}
           onChange={handleInputChange}
         />
         <InputComponent
           type="text"
           id="lastname"
-          placeholder="Lastname"
+          placeholder="Lastname:"
           value={formData.lastname}
           onChange={handleInputChange}
         />
@@ -65,7 +67,7 @@ const RegisterForm = () => {
       <InputComponent
         type="text"
         id="username"
-        placeholder="Username"
+        placeholder="Username:"
         value={formData.username}
         onChange={handleInputChange}
       />
@@ -73,7 +75,7 @@ const RegisterForm = () => {
       <InputComponent
         type="email"
         id="email"
-        placeholder="Email"
+        placeholder="Email:"
         value={formData.email}
         onChange={handleInputChange}
       />
@@ -81,19 +83,21 @@ const RegisterForm = () => {
       <InputComponent
         type="password"
         id="password"
-        placeholder="Password"
+        placeholder="Password:"
         value={formData.password}
         onChange={handleInputChange}
       />
 
       <InputComponent
-        type="text"
+        type="number"
         id="age"
-        placeholder="Age"
+        placeholder="Age:"
         value={formData.age}
         onChange={handleInputChange}
+        min={1}
+        max={130}
+        error={error}
       />
-
       <ReCAPTCHA
         sitekey={CAPTCHA_SITE_KEY}
         onChange={onCaptchaChange}

@@ -1,7 +1,7 @@
 import React from "react";
-import AuthBackground from "./authComponents/AuthBackground";
+import AuthBackground from "../auth/authComponents/AuthBackground";
 
-import RegisterForm from "./authComponents/RegisterForm";
+import RegisterForm from "../auth/authComponents/RegisterForm";
 
 const Register = () => {
   return (
