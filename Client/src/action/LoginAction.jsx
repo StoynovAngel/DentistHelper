@@ -15,7 +15,7 @@ export const loginAction = async ({
   }
 
   try {
-    const response = await axios.post(
+    const response = await axios.get(
       `${url}auth/login?captchaToken=${captchaToken}`,
       {
         username: formData.username,
@@ -32,6 +32,7 @@ export const loginAction = async ({
         setSuccess(true);
         setError(null);
         navigate("/");
+        console.log(response.data);
       } else {
         console.error("Invalid token format:", token);
         setError("Login failed: Invalid token format.");

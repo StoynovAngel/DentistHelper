@@ -9,7 +9,6 @@ import { CAPTCHA_SITE_KEY } from "../../utils/authUtils";
 
 const RegisterForm = () => {
   const { error, success, setError, setSuccess } = useAuth();
-  const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",

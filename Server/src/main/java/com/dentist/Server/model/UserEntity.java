@@ -1,11 +1,10 @@
 package com.dentist.Server.model;
 
-import com.dentist.Server.enums.UserType;
+import com.dentist.Server.model.enums.UserType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

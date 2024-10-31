@@ -16,6 +16,7 @@ public class ServerApplication {
 		System.setProperty("SPRING_JPA_HIBERNATE_DDL_AUTO", dotenv.get("SPRING_JPA_HIBERNATE_DDL_AUTO"));
 		System.setProperty("SECURITY_JWT_SECRET_KEY", dotenv.get("SECURITY_JWT_SECRET_KEY"));
 		System.setProperty("RECAPTCHA_SECRET", dotenv.get("RECAPTCHA_SECRET"));
+		System.setProperty("OPENAI_KEY", dotenv.get("OPENAI_KEY"));
 
 		SpringApplication.run(ServerApplication.class, args);
 	}

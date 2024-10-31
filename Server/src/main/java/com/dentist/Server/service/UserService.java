@@ -1,14 +1,12 @@
 package com.dentist.Server.service;
 
-import com.dentist.Server.enums.UserType;
+import com.dentist.Server.model.enums.UserType;
 import com.dentist.Server.exceptions.ResponseWrapper;
 import com.dentist.Server.model.UserEntity;
 import com.dentist.Server.repository.UserRepo;
 import com.dentist.Server.util.ResponseWrapperUtil;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

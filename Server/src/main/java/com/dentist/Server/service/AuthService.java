@@ -2,7 +2,7 @@ package com.dentist.Server.service;
 
 import com.dentist.Server.dto.UserRegistrationDTO;
 import com.dentist.Server.dto.UserResponseDTO;
-import com.dentist.Server.enums.UserType;
+import com.dentist.Server.model.enums.UserType;
 import com.dentist.Server.exceptions.ResponseWrapper;
 import com.dentist.Server.model.UserEntity;
 import com.dentist.Server.repository.UserRepo;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
