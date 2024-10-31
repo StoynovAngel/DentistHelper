@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import AboutContact from "../aboutComponents/AboutContact";
+import Email from "../aboutComponents/Email";
 import message from "/message.svg";
 import phone from "/phone.svg";
 import office from "/office.svg";
 import appointment from "/appointment.svg";
 
 const About = () => {
+  const [isEmailOpen, setIsEmailOpen] = useState(false);
+
   return (
     <>
       <div className="w-full flex flex-col justify-center">
         <div className="text-center">
           <h1 className="text-xl font-semibold text-main mb-5">About us</h1>
-          <h2 className="text-5xl font-bold mb-5">Get in touch we our team</h2>
+          <h2 className="text-5xl font-bold mb-5">
+            Get in touch with our team
+          </h2>
           <h3 className="text-2xl text-gray-700">We can help you out</h3>
         </div>
         <div className="flex justify-center aling-middle">
@@ -29,7 +34,7 @@ const About = () => {
             header={"Chat to support:"}
             description={"Write us an email"}
             text={"Click here"}
-            link={"mailto:dentist@gmail.com"}
+            onClick={() => setIsEmailOpen(true)}
           />
           <AboutContact
             path={office}
@@ -56,6 +61,7 @@ const About = () => {
           ></iframe>
         </div>
       </div>
+      <Email isOpen={isEmailOpen} onClose={() => setIsEmailOpen(false)} />
     </>
   );
 };

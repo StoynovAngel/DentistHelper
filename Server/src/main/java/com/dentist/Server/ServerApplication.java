@@ -17,6 +17,8 @@ public class ServerApplication {
 		System.setProperty("SECURITY_JWT_SECRET_KEY", dotenv.get("SECURITY_JWT_SECRET_KEY"));
 		System.setProperty("RECAPTCHA_SECRET", dotenv.get("RECAPTCHA_SECRET"));
 		System.setProperty("OPENAI_KEY", dotenv.get("OPENAI_KEY"));
+		System.setProperty("GMAIL_EMAIL_APP", dotenv.get("GMAIL_EMAIL_APP"));
+		System.setProperty("GMAIL_PASSWORD_APP", dotenv.get("GMAIL_PASSWORD_APP"));
 
 		SpringApplication.run(ServerApplication.class, args);
 	}

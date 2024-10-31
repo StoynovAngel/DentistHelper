@@ -3,7 +3,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import useAuth from "../../hooks/useAuth";
 import { loginAction } from "../../action/LoginAction";
 import { Link, useNavigate } from "react-router-dom";
-import { CAPTCHA_SITE_KEY } from "../../utils/authUtils";
+import { CAPTCHA_SITE_KEY } from "../../utils/keyUtils";
 const LoginForm = () => {
   const { error, setError, setSuccess, setUser, logIn } = useAuth();
   const [formData, setFormData] = useState({

@@ -5,7 +5,7 @@ import InputComponent from "./InputComponent";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { registerAction } from "../../action/RegisterAction";
-import { CAPTCHA_SITE_KEY } from "../../utils/authUtils";
+import { CAPTCHA_SITE_KEY } from "../../utils/keyUtils";
 
 const RegisterForm = () => {
   const { error, success, setError, setSuccess } = useAuth();
