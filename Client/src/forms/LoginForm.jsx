@@ -1,9 +1,12 @@
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import useAuth from "../../hooks/useAuth";
-import { loginAction } from "../../action/LoginAction";
+import useAuth from "../hooks/useAuth";
+import { loginAction } from "../action/LoginAction";
 import { Link, useNavigate } from "react-router-dom";
-import { CAPTCHA_SITE_KEY } from "../../utils/keyUtils";
+import { CAPTCHA_SITE_KEY } from "../utils/keyUtils";
+import InputComponent from "../auth/authComponents/InputComponent";
+import { inputLogin } from "../inputs/inputs";
+
 const LoginForm = () => {
   const { error, setError, setSuccess, setUser, logIn } = useAuth();
   const [formData, setFormData] = useState({
@@ -46,24 +49,20 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md">
       <h1 className="text-5xl text-center mb-8">Login</h1>
-
-      <input
-        type="text"
-        id="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleInputChange}
-        className="w-full p-4 border rounded bg-gray-200 mb-4"
-      />
-
-      <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleInputChange}
-        className="w-full p-4 border rounded bg-gray-200 mb-4"
-      />
+      {inputLogin(formData).map((field) => (
+        <InputComponent
+          key={field.id}
+          type={field.type}
+          id={field.id}
+          placeholder={field.placeholder}
+          value={field.value}
+          onChange={handleInputChange}
+          min={field.min}
+          max={field.max}
+          error={field.error}
+          color={"bg-gray-200"}
+        />
+      ))}
 
       <ReCAPTCHA
         sitekey={CAPTCHA_SITE_KEY}

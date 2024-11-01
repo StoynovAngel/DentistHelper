@@ -5,9 +5,11 @@ import message from "/message.svg";
 import phone from "/phone.svg";
 import office from "/office.svg";
 import appointment from "/appointment.svg";
+import Sms from "../aboutComponents/Sms";
 
 const About = () => {
   const [isEmailOpen, setIsEmailOpen] = useState(false);
+  const [isSmsOpen, setIsSmsOpen] = useState(false);
 
   return (
     <>
@@ -26,8 +28,9 @@ const About = () => {
           <AboutContact
             path={phone}
             header={"Call us:"}
-            description={"We receive calls from 8:00-18:00."}
+            description={"Calls from 8:00-18:00."}
             text={"+359 890 ####"}
+            onClick={() => setIsSmsOpen(true)}
           />
           <AboutContact
             path={message}
@@ -62,6 +65,7 @@ const About = () => {
         </div>
       </div>
       <Email isOpen={isEmailOpen} onClose={() => setIsEmailOpen(false)} />
+      <Sms isOpen={isSmsOpen} onClose={() => setIsSmsOpen(false)} />
     </>
   );
 };

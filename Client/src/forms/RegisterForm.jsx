@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from "react-router-dom";
-import InputComponent from "./InputComponent";
-import useAuth from "../../hooks/useAuth";
+import InputComponent from "../auth/authComponents/InputComponent";
+import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { registerAction } from "../../action/RegisterAction";
-import { CAPTCHA_SITE_KEY } from "../../utils/keyUtils";
+import { registerAction } from "../action/RegisterAction";
+import { CAPTCHA_SITE_KEY } from "../utils/keyUtils";
+import { inputRegister } from "../inputs/inputs";
 
 const RegisterForm = () => {
   const { error, success, setError, setSuccess } = useAuth();
@@ -45,58 +46,21 @@ const RegisterForm = () => {
   return (
     <form id="demo-form" onSubmit={handleSubmit} className="w-full max-w-md">
       <h1 className="text-5xl text-center mb-12">Create an account</h1>
-
-      <div className="grid grid-cols-2 gap-4">
+      {inputRegister(formData, error).map((field) => (
         <InputComponent
-          type="text"
-          id="firstname"
-          placeholder="Firstname:"
-          value={formData.firstname}
+          key={field.id}
+          type={field.type}
+          id={field.id}
+          placeholder={field.placeholder}
+          value={field.value}
           onChange={handleInputChange}
+          min={field.min}
+          max={field.max}
+          error={field.error}
+          color={"bg-gray-200"}
         />
-        <InputComponent
-          type="text"
-          id="lastname"
-          placeholder="Lastname:"
-          value={formData.lastname}
-          onChange={handleInputChange}
-        />
-      </div>
+      ))}
 
-      <InputComponent
-        type="text"
-        id="username"
-        placeholder="Username:"
-        value={formData.username}
-        onChange={handleInputChange}
-      />
-
-      <InputComponent
-        type="email"
-        id="email"
-        placeholder="Email:"
-        value={formData.email}
-        onChange={handleInputChange}
-      />
-
-      <InputComponent
-        type="password"
-        id="password"
-        placeholder="Password:"
-        value={formData.password}
-        onChange={handleInputChange}
-      />
-
-      <InputComponent
-        type="number"
-        id="age"
-        placeholder="Age:"
-        value={formData.age}
-        onChange={handleInputChange}
-        min={1}
-        max={130}
-        error={error}
-      />
       <ReCAPTCHA
         sitekey={CAPTCHA_SITE_KEY}
         onChange={onCaptchaChange}

@@ -17,7 +17,7 @@ const AboutContact = ({ path, header, description, text, link, onClick }) => {
         </Link>
       ) : (
         <button
-          onClick={onClick} // Use the onClick prop here
+          onClick={onClick}
           className="border-2 rounded-lg py-2 px-4 font-semibold text-gray-800 transition ease-linear delay-150 hover:text-white hover:bg-main hover:border-none "
         >
           {text}

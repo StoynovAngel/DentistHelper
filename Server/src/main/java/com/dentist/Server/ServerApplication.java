@@ -19,6 +19,7 @@ public class ServerApplication {
 		System.setProperty("OPENAI_KEY", dotenv.get("OPENAI_KEY"));
 		System.setProperty("GMAIL_EMAIL_APP", dotenv.get("GMAIL_EMAIL_APP"));
 		System.setProperty("GMAIL_PASSWORD_APP", dotenv.get("GMAIL_PASSWORD_APP"));
+		System.setProperty("PHONE_NUMBER", dotenv.get("PHONE_NUMBER"));
 
 		SpringApplication.run(ServerApplication.class, args);
 	}

@@ -1,6 +1,6 @@
 import React from "react";
 import AuthBackground from "../auth/authComponents/AuthBackground";
-import LoginForm from "../auth/authComponents/LoginForm";
+import LoginForm from "../forms/LoginForm";
 
 const Login = () => {
   return (
