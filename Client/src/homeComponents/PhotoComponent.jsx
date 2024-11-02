@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import RoundedButton from "./RoundedButton";
+import { inputPhotoComponent } from "../inputs/inputPhotoComponent";
+import photo1 from "/dentist.jpg";
+import photo2 from "/dentist2.jpg";
 
 const PhotoComponent = () => {
-  const photos = ["/dentist.jpg", "/dentist2.jpg"];
+  const photos = inputPhotoComponent({ photo1, photo2 });
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleOnClick = (direction) => {
@@ -21,7 +24,7 @@ const PhotoComponent = () => {
   return (
     <div className="relative mb-4 sm:mb-0">
       <img
-        src={photos[currentIndex]}
+        src={photos[currentIndex].src}
         className="w-full h-96 object-cover rounded-lg"
         alt="Background"
       />

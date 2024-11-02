@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
-import RoundedButton from "../../homeComponents/RoundedButton";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import ReactLoading from "react-loading";
-import image1 from "/authBackground.jpg";
-import image2 from "/authBackground1.jpg";
-import image3 from "/authBackground2.jpg";
+import { inputImage } from "../../inputs/inputImage";
+import image1 from "/authBackground.webp";
+import image2 from "/authBackground1.webp";
+import image3 from "/authBackground2.webp";
 
 const AuthBackground = () => {
   const [position, setPosition] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const images = [
-    { src: image1, caption: "Capturing Moments" },
-    { src: image3, caption: "Sharing Joy" },
-    { src: image2, caption: "Creating Memories" },
-  ];
+  const images = useMemo(() => inputImage({ image1, image2, image3 }), []);
 
   useEffect(() => {
     const loadImages = images.map((image) => {
@@ -25,8 +20,12 @@ const AuthBackground = () => {
       });
     });
 
-    Promise.all(loadImages).then(() => setLoading(true));
+    Promise.all(loadImages).then(() => setLoading(false));
   }, [images]);
+
+  if (loading) {
+    return <div className="text-center text-white">Loading...</div>;
+  }
 
   return (
     <div className="relative h-7/8 w-full">

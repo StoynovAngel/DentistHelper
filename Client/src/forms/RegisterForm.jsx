@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from "react-router-dom";
 import InputComponent from "../auth/authComponents/InputComponent";
@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { registerAction } from "../action/RegisterAction";
 import { CAPTCHA_SITE_KEY } from "../utils/keyUtils";
-import { inputRegister } from "../inputs/inputs";
+import { inputRegister } from "../inputs/inputRegister/index";
 
 const RegisterForm = () => {
   const { error, success, setError, setSuccess } = useAuth();

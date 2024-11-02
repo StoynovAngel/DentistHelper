@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import AboutContact from "../aboutComponents/AboutContact";
 import Email from "../aboutComponents/Email";
-import message from "/message.svg";
-import phone from "/phone.svg";
-import office from "/office.svg";
-import appointment from "/appointment.svg";
 import Sms from "../aboutComponents/Sms";
+import { AboutContact as contactData } from "../inputs/inputContact";
 
 const About = () => {
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const [isSmsOpen, setIsSmsOpen] = useState(false);
+
+  const contacts = contactData({
+    setIsSmsOpen,
+    setIsEmailOpen,
+  });
 
   return (
     <>
@@ -25,34 +27,17 @@ const About = () => {
           <img src="/map.svg" className="h-fit lg:w-4/6" alt="Map" />
         </div>
         <div className="grid justify-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 m-5 w-fit mx-auto">
-          <AboutContact
-            path={phone}
-            header={"Call us:"}
-            description={"Calls from 8:00-18:00."}
-            text={"+359 890 ####"}
-            onClick={() => setIsSmsOpen(true)}
-          />
-          <AboutContact
-            path={message}
-            header={"Chat to support:"}
-            description={"Write us an email"}
-            text={"Click here"}
-            onClick={() => setIsEmailOpen(true)}
-          />
-          <AboutContact
-            path={office}
-            header={"Visit us:"}
-            description={"Visit our office HQ"}
-            text={"View on Google Maps"}
-            link={"https://maps.app.goo.gl/4wzQPpPokv6CJgmh7"}
-          />
-          <AboutContact
-            path={appointment}
-            header={"Make an appointment:"}
-            description={"Want to smile more?"}
-            text={"Click here"}
-            link={"/appointment"}
-          />
+          {contacts.map((contact) => (
+            <AboutContact
+              key={contact.id}
+              path={contact.src}
+              header={contact.header}
+              description={contact.description}
+              text={contact.text}
+              onClick={contact.onClick}
+              link={contact.link}
+            />
+          ))}
         </div>
         <div>
           <iframe

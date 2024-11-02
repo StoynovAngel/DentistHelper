@@ -1,5 +1,6 @@
 import React from "react";
 import InputComponent from "../auth/authComponents/InputComponent";
+import { inputEmail } from "../inputs/inputEmail";
 
 const EmailForm = ({
   handleSubmitEmail,
@@ -11,6 +12,17 @@ const EmailForm = ({
   setMessage,
   onClose,
 }) => {
+  const inputFields = inputEmail({
+    sender,
+    setSender,
+    required: true,
+    subject,
+    setSubject,
+    message,
+    setMessage,
+    multiline: true,
+  });
+
   return (
     <form
       onSubmit={handleSubmitEmail}
@@ -25,31 +37,18 @@ const EmailForm = ({
             Send us an Email
           </h3>
           <div className="mt-2">
-            <InputComponent
-              type="text"
-              placeholder="Sender"
-              value={sender}
-              onChange={(e) => setSender(e.target.value)}
-              color={"bg-gray-100"}
-              required
-            />
-            <InputComponent
-              type="text"
-              placeholder="Subject"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              color={"bg-gray-100"}
-              required
-            />
-            <InputComponent
-              type="text"
-              placeholder="Content"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              color={"bg-gray-100"}
-              required
-              multiline
-            />
+            {inputFields.map((field) => (
+              <InputComponent
+                key={field.id}
+                type={field.type}
+                placeholder={field.placeholder}
+                value={field.value}
+                onChange={field.onChange}
+                color={field.color}
+                required={field.required}
+                multiline={field.multiline}
+              />
+            ))}
           </div>
         </div>
       </div>

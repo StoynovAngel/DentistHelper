@@ -3,6 +3,7 @@ import useLogin from "../hooks/useLogin";
 import useLogout from "../hooks/useLogout";
 import { AuthProvider } from "../auth/AuthProvider";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const AuthProviderWrapper = ({ children }) => {
   const { user, isLoggedIn, setUser, setIsLoggedIn } = useInitializeAuth();
@@ -23,6 +24,10 @@ const AuthProviderWrapper = ({ children }) => {
   };
 
   return <AuthProvider authValues={authValues}>{children}</AuthProvider>;
+};
+
+AuthProviderWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AuthProviderWrapper;

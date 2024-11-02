@@ -5,7 +5,7 @@ import { loginAction } from "../action/LoginAction";
 import { Link, useNavigate } from "react-router-dom";
 import { CAPTCHA_SITE_KEY } from "../utils/keyUtils";
 import InputComponent from "../auth/authComponents/InputComponent";
-import { inputLogin } from "../inputs/inputs";
+import { inputLogin } from "../inputs/inputLogin/index";
 
 const LoginForm = () => {
   const { error, setError, setSuccess, setUser, logIn } = useAuth();
