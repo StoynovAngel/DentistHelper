@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AboutContact from "../aboutComponents/AboutContact";
-import Email from "../aboutComponents/Email";
-import Sms from "../aboutComponents/Sms";
+import AboutContact from "../components/aboutComponents/AboutContact";
+import Email from "../components/aboutComponents/Email";
+import Sms from "../components/aboutComponents/Sms";
 import { AboutContact as contactData } from "../inputs/inputContact";
 
 const About = () => {

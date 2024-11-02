@@ -1,23 +1,30 @@
 import { useState } from "react";
-import { sendSmsAction } from "../action/SmsAction";
-import SmsForm from "../forms/SmsForm";
 
-const Sms = ({ isOpen, onClose }) => {
+import { sendEmailAction } from "../../action/EmailAction";
+import EmailForm from "../../forms/EmailForm";
+
+const Email = ({ isOpen, onClose }) => {
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [recipientNumber, setRecipientNumber] = useState("+359890504411");
-  const [fromNumber, setFromNumber] = useState("+18606984110");
+  const [sender, setSender] = useState("");
+  const gmailKey = import.meta.env.VITE_GMAIL_KEY;
 
   if (!isOpen) return null;
 
-  const handleSubmitSms = async (e) => {
+  const handleSubmitEmail = async (e) => {
     e.preventDefault();
 
-    sendSmsAction({
-      fromPhoneNumber: fromNumber,
-      toPhoneNumber: recipientNumber,
-      body: message,
+    sendEmailAction({
+      emailDetails: {
+        sender: sender,
+        subject,
+        msgBody: message,
+        recipient: gmailKey,
+      },
+      onClose,
     });
-
+    setSender("");
+    setSubject("");
     setMessage("");
     onClose();
   };
@@ -38,9 +45,13 @@ const Sms = ({ isOpen, onClose }) => {
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto font">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-            <SmsForm
-              handleSubmitSms={handleSubmitSms}
+            <EmailForm
+              handleSubmitEmail={handleSubmitEmail}
+              sender={sender}
+              subject={subject}
               message={message}
+              setSender={setSender}
+              setSubject={setSubject}
               setMessage={setMessage}
               onClose={onClose}
             />
@@ -51,4 +62,4 @@ const Sms = ({ isOpen, onClose }) => {
   );
 };
 
-export default Sms;
+export default Email;

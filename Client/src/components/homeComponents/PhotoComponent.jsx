@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RoundedButton from "./RoundedButton";
-import { inputPhotoComponent } from "../inputs/inputPhotoComponent";
+import { inputPhotoComponent } from "../../inputs/inputPhotoComponent";
 import photo1 from "/dentist.jpg";
 import photo2 from "/dentist2.jpg";
 

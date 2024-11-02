@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { loginAction } from "../action/LoginAction";
 import { Link, useNavigate } from "react-router-dom";
 import { CAPTCHA_SITE_KEY } from "../utils/keyUtils";
-import InputComponent from "../auth/authComponents/InputComponent";
+import InputComponent from "../components/authComponents/InputComponent";
 import { inputLogin } from "../inputs/inputLogin/index";
 
 const LoginForm = () => {

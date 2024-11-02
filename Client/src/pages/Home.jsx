@@ -1,9 +1,9 @@
 import React from "react";
 import Navigation from "../navigation/Navigation";
-import Contact from "../homeComponents/Contact";
-import Background from "../homeComponents/Background";
-import PhotoComponent from "../homeComponents/PhotoComponent";
-import Header from "../homeComponents/Header";
+import Contact from "../components/homeComponents/Contact";
+import Background from "../components/homeComponents/Background";
+import PhotoComponent from "../components/homeComponents/PhotoComponent";
+import Header from "../components/homeComponents/Header";
 
 const Home = () => {
   return (

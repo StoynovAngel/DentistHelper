@@ -1,30 +1,23 @@
 import { useState } from "react";
+import { sendSmsAction } from "../../action/SmsAction";
+import SmsForm from "../../forms/SmsForm";
 
-import { sendEmailAction } from "../action/EmailAction";
-import EmailForm from "../forms/EmailForm";
-
-const Email = ({ isOpen, onClose }) => {
-  const [subject, setSubject] = useState("");
+const Sms = ({ isOpen, onClose }) => {
   const [message, setMessage] = useState("");
-  const [sender, setSender] = useState("");
-  const gmailKey = import.meta.env.VITE_GMAIL_KEY;
+  const [recipientNumber, setRecipientNumber] = useState("+359890504411");
+  const [fromNumber, setFromNumber] = useState("+18606984110");
 
   if (!isOpen) return null;
 
-  const handleSubmitEmail = async (e) => {
+  const handleSubmitSms = async (e) => {
     e.preventDefault();
 
-    sendEmailAction({
-      emailDetails: {
-        sender: sender,
-        subject,
-        msgBody: message,
-        recipient: gmailKey,
-      },
-      onClose,
+    sendSmsAction({
+      fromPhoneNumber: fromNumber,
+      toPhoneNumber: recipientNumber,
+      body: message,
     });
-    setSender("");
-    setSubject("");
+
     setMessage("");
     onClose();
   };
@@ -45,13 +38,9 @@ const Email = ({ isOpen, onClose }) => {
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto font">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-            <EmailForm
-              handleSubmitEmail={handleSubmitEmail}
-              sender={sender}
-              subject={subject}
+            <SmsForm
+              handleSubmitSms={handleSubmitSms}
               message={message}
-              setSender={setSender}
-              setSubject={setSubject}
               setMessage={setMessage}
               onClose={onClose}
             />
@@ -62,4 +51,4 @@ const Email = ({ isOpen, onClose }) => {
   );
 };
 
-export default Email;
+export default Sms;

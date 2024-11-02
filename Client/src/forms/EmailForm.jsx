@@ -1,5 +1,5 @@
 import React from "react";
-import InputComponent from "../auth/authComponents/InputComponent";
+import InputComponent from "../components/authComponents/InputComponent";
 import { inputEmail } from "../inputs/inputEmail";
 
 const EmailForm = ({

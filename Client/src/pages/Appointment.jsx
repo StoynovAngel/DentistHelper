@@ -1,6 +1,3 @@
-import React from "react";
-import AboutContact from "../aboutComponents/AboutContact";
-
 const Appointment = () => {
   return (
     <div className="w-full flex flex-col justify-center">

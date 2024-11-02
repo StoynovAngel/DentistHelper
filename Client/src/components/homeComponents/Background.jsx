@@ -1,5 +1,5 @@
 import Cart from "./Cart";
-import { inputHome } from "../inputs/inputHome/index";
+import { inputHome } from "../../inputs/inputHome/index";
 
 const Background = () => {
   return (
