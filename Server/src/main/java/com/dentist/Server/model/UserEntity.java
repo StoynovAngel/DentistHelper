@@ -58,6 +58,9 @@ public class UserEntity implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
+    @OneToMany(mappedBy = "user")
+    private List<AppointmentEntity> appointments;
+
     @Override
     public boolean isAccountNonExpired() {
         return UserDetails.super.isAccountNonExpired();

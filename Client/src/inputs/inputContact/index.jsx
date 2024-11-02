@@ -1,11 +1,4 @@
-export const AboutContact = (
-  phone,
-  setIsSmsOpen,
-  setIsEmailOpen,
-  message,
-  office,
-  appointment
-) => [
+export const AboutContact = ({ setIsSmsOpen, setIsEmailOpen }) => [
   {
     id: "contact-phone",
     src: "/phone.svg",

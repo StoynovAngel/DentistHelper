@@ -1,7 +1,7 @@
 package com.dentist.Server.service;
 
 import com.dentist.Server.model.enums.UserType;
-import com.dentist.Server.exceptions.ResponseWrapper;
+import com.dentist.Server.wrapper.ResponseWrapper;
 import com.dentist.Server.model.UserEntity;
 import com.dentist.Server.repository.UserRepo;
 import com.dentist.Server.util.ResponseWrapperUtil;

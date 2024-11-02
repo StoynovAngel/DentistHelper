@@ -1,4 +1,4 @@
-package com.dentist.Server.exceptions;
+package com.dentist.Server.wrapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

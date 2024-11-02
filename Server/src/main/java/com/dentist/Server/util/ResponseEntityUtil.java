@@ -1,6 +1,6 @@
 package com.dentist.Server.util;
 
-import com.dentist.Server.exceptions.ResponseWrapper;
+import com.dentist.Server.wrapper.ResponseWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

@@ -2,7 +2,7 @@ package com.dentist.Server.controller;
 
 import com.dentist.Server.dto.UserRegistrationDTO;
 import com.dentist.Server.dto.UserResponseDTO;
-import com.dentist.Server.exceptions.ResponseWrapper;
+import com.dentist.Server.wrapper.ResponseWrapper;
 import com.dentist.Server.model.UserEntity;
 import com.dentist.Server.service.AuthService;
 import jakarta.validation.Valid;
